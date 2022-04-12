@@ -1,8 +1,8 @@
 package statistics
 
 import (
-	"git.woa.com/woodyuan/woodSE/Histogram"
-	"git.woa.com/woodyuan/woodSE/hyperloglog"
+	"github.com/BourneHUST/Histogram/Histogram"
+	"github.com/BourneHUST/Histogram/hyperloglog"
 )
 
 type TopNBucket struct {

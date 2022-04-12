@@ -3,8 +3,9 @@ package statistics
 import (
 	"database/sql"
 	"fmt"
-	"git.woa.com/woodyuan/woodSE/database"
 	"strings"
+
+	"github.com/BourneHUST/Histogram/database"
 )
 
 func (l *TopNList) Update(syno *synopsis) {

@@ -2,10 +2,11 @@ package statistics
 
 import (
 	"fmt"
-	"git.woa.com/woodyuan/woodSE/Histogram"
-	"git.woa.com/woodyuan/woodSE/database"
+
+	"github.com/BourneHUST/Histogram/Histogram"
+	"github.com/BourneHUST/Histogram/config"
+	"github.com/BourneHUST/Histogram/database"
 )
-import "git.woa.com/woodyuan/woodSE/config"
 
 func BuildHistogram(Connector *database.Connector, BucketSize int, Database, Table, Column string, FrequencyHistograms Histogram.TotalFrequencyHistogram, HybridHistograms Histogram.TotalHybridHistogram) {
 

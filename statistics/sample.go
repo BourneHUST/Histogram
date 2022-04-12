@@ -2,12 +2,13 @@ package statistics
 
 import (
 	"database/sql"
-	"git.woa.com/woodyuan/woodSE/Histogram"
-	"git.woa.com/woodyuan/woodSE/config"
-	"git.woa.com/woodyuan/woodSE/database"
 	"log"
 	"sort"
 	"strings"
+
+	"github.com/BourneHUST/Histogram/Histogram"
+	"github.com/BourneHUST/Histogram/config"
+	"github.com/BourneHUST/Histogram/database"
 )
 
 func DoSamples(res *sql.Rows, Type string, TableRows uint64, BucketSize int, Database, Table, Column string, FrequencyHistograms Histogram.TotalFrequencyHistogram, HybridHistograms Histogram.TotalHybridHistogram) {

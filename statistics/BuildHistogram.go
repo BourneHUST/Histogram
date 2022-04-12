@@ -1,9 +1,10 @@
 package statistics
 
 import (
-	"git.woa.com/woodyuan/woodSE/Histogram"
 	"sort"
 	"time"
+
+	"github.com/BourneHUST/Histogram/Histogram"
 )
 
 func (l *TopNList) BuildFrequencyHistogram(BucketSize int) Histogram.FrequencyHistogram {

@@ -1,8 +1,9 @@
 package statistics
 
 import (
-	"git.woa.com/woodyuan/woodSE/hyperloglog"
 	"hash/fnv"
+
+	"github.com/BourneHUST/Histogram/hyperloglog"
 )
 
 func StringHash(s string) uint64 {

@@ -2,11 +2,12 @@ package statistics
 
 import (
 	"fmt"
-	"git.woa.com/woodyuan/woodSE/config"
-	"git.woa.com/woodyuan/woodSE/database"
 	"log"
 	"strconv"
 	"strings"
+
+	"github.com/BourneHUST/Histogram/config"
+	"github.com/BourneHUST/Histogram/database"
 )
 
 func GatherNDV(Connector *database.Connector, Database, Table, Column string) (error, uint64) {
