@@ -2,10 +2,10 @@ package API
 
 import (
 	"fmt"
-	"git.woa.com/woodyuan/woodSE/Histogram"
-	"git.woa.com/woodyuan/woodSE/config"
-	"git.woa.com/woodyuan/woodSE/database"
-	"git.woa.com/woodyuan/woodSE/statistics"
+	"github.com/BourneHUST/Histogram/Histogram"
+	"github.com/BourneHUST/Histogram/config"
+	"github.com/BourneHUST/Histogram/database"
+	"github.com/BourneHUST/Histogram/statistics"
 	"log"
 	"strings"
 )
