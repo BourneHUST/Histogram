@@ -2,6 +2,13 @@ package API
 
 import (
 	"fmt"
+<<<<<<< HEAD
+=======
+	"github.com/BourneHUST/Histogram/Histogram"
+	"github.com/BourneHUST/Histogram/config"
+	"github.com/BourneHUST/Histogram/database"
+	"github.com/BourneHUST/Histogram/statistics"
+>>>>>>> f69fe2976b53457e2d79e9cb3a34c6ed3ede29e6
 	"log"
 	"strings"
 	"github.com/BourneHUST/Histogram/Histogram"
