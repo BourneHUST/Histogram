@@ -1,0 +1,8 @@
+MaxMemory: 100
+MinBucketSize: 254
+MaxBucketSize: 2000
+MaxLength: 64
+LengthSampleSize: 3
+HybridSampleSize: 100000
+NDVSampleSize: 1000000
+AutoSampling: 1
