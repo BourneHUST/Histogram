@@ -1,4 +1,4 @@
-module git.woa.com/woodyuan/woodSE
+module github.com/BourneHUST/Histogram
 
 go 1.16
 
