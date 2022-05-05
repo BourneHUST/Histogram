@@ -2,10 +2,11 @@ package main
 
 import (
 	"database/sql"
-	"git.woa.com/woodyuan/woodSE/API"
-	"git.woa.com/woodyuan/woodSE/config"
-	"git.woa.com/woodyuan/woodSE/database"
 	"log"
+
+	"github.com/BourneHUST/Histogram/API"
+	"github.com/BourneHUST/Histogram/config"
+	"github.com/BourneHUST/Histogram/database"
 )
 
 // NewConnector 创建新连接

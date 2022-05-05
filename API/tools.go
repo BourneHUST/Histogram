@@ -29,6 +29,7 @@ func NewStatistics(Connector *database.Connector) *Statistics {
 
 	return BS
 }
+
 func (BS *Statistics) GatherNDV(Database, Table, Column string) {
 	err, NDV := statistics.GatherNDV(BS.Connector, Database, Table, Column)
 	if err != nil {
@@ -42,6 +43,7 @@ func (BS *Statistics) GatherNDV(Database, Table, Column string) {
 func (BS *Statistics) GatherHistogram(BucketSize int, Database, Table, Column string) {
 	statistics.BuildHistogram(BS.Connector, BucketSize, Database, Table, Column, BS.FrequencyHistograms, BS.HybridHistograms)
 }
+
 func (BS *Statistics) GetNDV(Database, Table, Column string) uint64 {
 
 	col := Database + "." + Table + "." + Column
@@ -85,6 +87,8 @@ func (BS *Statistics) Equal(Database, Table, Column, value string) uint64 {
 		return his2.GetEqualCardinality(value)
 	}
 }
+
+
 func (BS *Statistics) Range(Database, Table, Column, value string) uint64 {
 
 	conf := config.NewConfig()
@@ -159,98 +163,5 @@ func (BS *Statistics) Range(Database, Table, Column, value string) uint64 {
 		}
 	}
 }
-func (BS *Statistics) MAX(Database, Table, Column string) interface{} {
-	conf := config.NewConfig()
-	col := Database + "." + Table + "." + Column
-	his1, ok1 := BS.FrequencyHistograms.TotalFH[col]
-	his2, ok2 := BS.HybridHistograms.TotalHy[col]
-	if !ok1 && !ok2 {
-		BS.GatherHistogram(conf.MaxBucketSize, Database, Table, Column)
-		fmt.Println("xxx")
-		his1, ok1 = BS.FrequencyHistograms.TotalFH[col]
-		his2, ok2 = BS.HybridHistograms.TotalHy[col]
-	}
-	if ok1 {
-		return his1.BS.GetMAX()
 
-	} else {
-		return his2.BS.GetMAX()
-	}
 
-}
-func (BS *Statistics) MIN(Database, Table, Column string) interface{} {
-	conf := config.NewConfig()
-	col := Database + "." + Table + "." + Column
-	his1, ok1 := BS.FrequencyHistograms.TotalFH[col]
-	his2, ok2 := BS.HybridHistograms.TotalHy[col]
-
-	if !ok1 && !ok2 {
-		BS.GatherHistogram(conf.MaxBucketSize, Database, Table, Column)
-		his1, ok1 = BS.FrequencyHistograms.TotalFH[col]
-		his2, ok2 = BS.HybridHistograms.TotalHy[col]
-	}
-
-	if ok1 {
-		return his1.BS.GetMIN()
-
-	} else {
-		return his2.BS.GetMIN()
-	}
-}
-func (BS *Statistics) NULL(Database, Table, Column string) int {
-	conf := config.NewConfig()
-	col := Database + "." + Table + "." + Column
-	his1, ok1 := BS.FrequencyHistograms.TotalFH[col]
-	his2, ok2 := BS.HybridHistograms.TotalHy[col]
-
-	if !ok1 && !ok2 {
-		BS.GatherHistogram(conf.MaxBucketSize, Database, Table, Column)
-		his1, ok1 = BS.FrequencyHistograms.TotalFH[col]
-		his2, ok2 = BS.HybridHistograms.TotalHy[col]
-	}
-
-	if ok1 {
-		return his1.BS.GetNULL()
-
-	} else {
-		return his2.BS.GetNULL()
-	}
-}
-func (BS *Statistics) AverageLength(Database, Table, Column string) uint64 {
-	conf := config.NewConfig()
-	col := Database + "." + Table + "." + Column
-	his1, ok1 := BS.FrequencyHistograms.TotalFH[col]
-	his2, ok2 := BS.HybridHistograms.TotalHy[col]
-
-	if !ok1 && !ok2 {
-		BS.GatherHistogram(conf.MaxBucketSize, Database, Table, Column)
-		his1, ok1 = BS.FrequencyHistograms.TotalFH[col]
-		his2, ok2 = BS.HybridHistograms.TotalHy[col]
-	}
-
-	if ok1 {
-		return his1.BS.GetAverageLength()
-
-	} else {
-		return his2.BS.GetAverageLength()
-	}
-}
-func (BS *Statistics) ROWS(Database, Table, Column string) uint64 {
-	conf := config.NewConfig()
-	col := Database + "." + Table + "." + Column
-	his1, ok1 := BS.FrequencyHistograms.TotalFH[col]
-	his2, ok2 := BS.HybridHistograms.TotalHy[col]
-
-	if !ok1 && !ok2 {
-		BS.GatherHistogram(conf.MaxBucketSize, Database, Table, Column)
-		his1, ok1 = BS.FrequencyHistograms.TotalFH[col]
-		his2, ok2 = BS.HybridHistograms.TotalHy[col]
-	}
-
-	if ok1 {
-		return his1.BS.GetRows()
-
-	} else {
-		return his2.BS.GetRows()
-	}
-}

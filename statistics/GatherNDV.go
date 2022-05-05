@@ -31,21 +31,6 @@ func GatherNDV(Connector *database.Connector, Database, Table, Column string) (e
 		}
 	}
 
-	IndexInfo, err := Connector.ShowIndex(Database, Table)
-	if err != nil {
-		return err, 0
-	}
-	IndexRows, err := IndexInfo.GetTableIndexRow(Column)
-
-	if err != nil {
-		log.Println(err.Error())
-	} else {
-		indexs := IndexInfo.FindIndex(IndexRows.KeyName)
-		if (IndexRows.NonUnique == 0 && len(indexs) <= 1) || IndexRows.KeyName == "PRIMARY" {
-			return nil, tableRows
-		}
-	}
-
 	SampleSize := conf.NDVSampleSize
 	factor := float64(SampleSize) / float64(tableRows)
 
@@ -88,6 +73,7 @@ func GatherNDV(Connector *database.Connector, Database, Table, Column string) (e
 	if errr != nil {
 		return errr, 0
 	}
+
 	var value []byte
 	for res.Next() {
 		err := res.Scan(&value)
@@ -117,5 +103,4 @@ func GatherNDV(Connector *database.Connector, Database, Table, Column string) (e
 		}
 	}
 	return nil, NDVCounter.Count()
-
 }
